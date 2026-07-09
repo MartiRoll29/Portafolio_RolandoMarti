@@ -31,3 +31,7 @@ build/
 
 ### VS Code ###
 .vscode/
+
+### Firebase ###
+# Clave privada del SDK de Firebase Admin: nunca debe subirse a un repositorio publico
+src/main/resources/firebase/*.json

@@ -74,7 +74,7 @@
                                             <td>[[${c.idCategoria}]]</td>
                                             <td>[[${c.descripcion}]]</td>
                                             <td><img th:src="@{${c.rutaImagen}}" alt="noData" height="75"/></td>
-                                            <td th:text="${c.activo} ? #{categoria.activa} : #{categoria.inactiva}"></td>
+                                            <td th:text="${c.activo} ? 'Activa':'Inactiva'"></td>
                                             <td>
                                                 <button type="button" class="btn btn-danger"
                                                         data-bs-toggle="modal" data-bs-target="#confirmModal"
@@ -103,7 +103,7 @@
             </div>
         </section>
 
-        <!-- 3 Fragmento que se utiliza en la página modifica.html -->
+        <!-- 3 Fragmento que se utiliza en la página modifca.html -->
         <section th:fragment="editar">
             <div class="row">
                 <div class="col-md-2"></div>
