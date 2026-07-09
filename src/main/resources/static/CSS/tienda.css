@@ -1,0 +1,31 @@
+/*
+Estilos propios de la plantilla TechShop.
+Bootstrap se encarga del resto; aquí solo va lo que Bootstrap no cubre.
+*/
+
+/* Submenú anidado (Administración > Seguridad) */
+.submenu {
+    position: relative;
+}
+
+.submenu > .dropdown-menu {
+    top: 0;
+    left: 100%;
+    margin-top: -1px;
+}
+
+/* Animación del modal de confirmación de eliminación */
+.animate-slide-up {
+    animation: slideUp 0.3s ease-out;
+}
+
+@keyframes slideUp {
+    from {
+        transform: translateY(40px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
