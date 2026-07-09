@@ -39,6 +39,17 @@
 			<artifactId>spring-boot-starter-webmvc</artifactId>
 		</dependency>
 
+		<!-- Spring Security: autenticación y autorización por roles -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-security</artifactId>
+		</dependency>
+		<!-- Integra las expresiones sec:* de Spring Security dentro de las plantillas Thymeleaf -->
+		<dependency>
+			<groupId>org.thymeleaf.extras</groupId>
+			<artifactId>thymeleaf-extras-springsecurity6</artifactId>
+		</dependency>
+
 		<!-- Bootstrap y sus dependencias (CSS, iconos, JS) -->
 		<dependency>
 			<groupId>org.webjars</groupId>

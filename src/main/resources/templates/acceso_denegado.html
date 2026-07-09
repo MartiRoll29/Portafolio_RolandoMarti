@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
+    <head th:replace="~{general/fragmentos :: head}"/>
+    <body>
+        <header th:replace="~{general/fragmentos :: header}"/>
+        <div class="row my-5">
+            <div class="col-md-6 offset-md-3 text-center">
+                <div class="card">
+                    <div class="card-header bg-danger text-white">
+                        <h2><i class="fa-solid fa-ban"></i> [[#{acceso.denegado.titulo}]]</h2>
+                    </div>
+                    <div class="card-body">
+                        <p>[[#{acceso.denegado.texto}]]</p>
+                        <a th:href="@{/}" class="btn btn-primary"><i class="fas fa-house"></i> [[#{accion.regresar}]]</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <footer th:replace="~{general/fragmentos :: footer}"/>
+    </body>
+</html>
