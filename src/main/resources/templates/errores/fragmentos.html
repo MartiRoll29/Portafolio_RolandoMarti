@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
+    <head th:replace="~{general/fragmentos :: head}"/>
+
+    <body>
+        <!-- Fragmento que devuelve el AJAX del carrito cuando algo falla
+             (por ejemplo, stock insuficiente o producto inexistente) -->
+        <div th:fragment="errorMensaje" class="alert alert-danger py-1 px-2 mb-0" role="alert">
+            <i class="fa-solid fa-triangle-exclamation"></i>
+            <span th:text="${errorMensaje}">Mensaje de error</span>
+        </div>
+    </body>
+</html>

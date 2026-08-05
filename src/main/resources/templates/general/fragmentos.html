@@ -12,10 +12,13 @@
         <script th:src="@{/webjars/popper.js/2.11.7/umd/popper.min.js}"></script>
         <script th:src="@{/webjars/bootstrap/5.3.7/js/bootstrap.min.js}"></script>
         <link th:href="@{/css/estilos.css}" rel="stylesheet" type="text/css"/>
+        <!-- Token CSRF: lo lee addCart() en rutinas.js para poder hacer el POST por AJAX -->
+        <meta name="_csrf" th:content="${_csrf.token}"/>
+        <meta name="_csrf_header" th:content="${_csrf.headerName}"/>
     </head>
 
     <body>
-        <header th:fragment="header" class="header">
+        <header th:fragment="header" class="header d-print-none">
             <nav class="navbar navbar-expand-sm p-0">
                 <div class="container">
                     <a th:href="@{/}" class="navbar-brand">[[#{site.marca}]]</a>
@@ -46,6 +49,8 @@
                                 </ul>
                             </li>
                         </ul>
+                        <!-- Acá addCart() inyecta por AJAX el botón "Ver Carrito" con el total -->
+                        <div id="resultBlock"></div>
                         <!-- Sesión: login para anónimos, usuario + logout para autenticados -->
                         <ul class="navbar-nav" sec:authorize="!isAuthenticated()">
                             <li class="nav-item px-2">
@@ -85,7 +90,7 @@
             </section>
         </header>
 
-        <footer th:fragment="footer" class="p-2 mt-5 bg-info text-white">
+        <footer th:fragment="footer" class="p-2 mt-5 bg-info text-white d-print-none">
             <p class="lead text-center">[[#{site.derechos}]] &COPY;</p>
         </footer>
 
