@@ -30,6 +30,7 @@
                             <li class="nav-item px-2 dropdown" sec:authorize="hasRole('ADMIN')">
                                 <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">[[#{nav.administracion}]]</a>
                                 <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item" th:href="@{/usuario/listado}">[[#{nav.usuarios}]]</a></li>
                                 </ul>
                             </li>
                         </ul>
@@ -55,7 +56,12 @@
                         </ul>
                         <ul class="navbar-nav" sec:authorize="isAuthenticated()">
                             <li class="nav-item px-2 my-auto">
-                                <span class="nav-link"><i class="fas fa-user"></i> <span sec:authentication="name" class="ms-1"></span></span>
+                                <span class="nav-link">
+                                    <img th:if="${session.imagenUsuario != null}" th:src="@{${session.imagenUsuario}}"
+                                         alt="foto de usuario" height="30" class="rounded-circle"/>
+                                    <i th:unless="${session.imagenUsuario != null}" class="fas fa-user"></i>
+                                    <span sec:authentication="name" class="ms-1"></span>
+                                </span>
                             </li>
                             <li class="nav-item px-2 my-auto">
                                 <form method="post" th:action="@{/logout}" class="d-inline">
