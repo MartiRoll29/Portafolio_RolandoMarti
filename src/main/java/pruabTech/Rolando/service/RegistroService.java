@@ -3,12 +3,12 @@ package pruabTech.Rolando.service;
 import jakarta.mail.MessagingException;
 import java.util.Locale;
 import java.util.Optional;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.MessageSource;
 import org.springframework.context.NoSuchMessageException;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 import org.springframework.web.multipart.MultipartFile;
+import pruabTech.Rolando.domain.Constante;
 import pruabTech.Rolando.domain.Usuario;
 
 @Service
@@ -17,11 +17,18 @@ public class RegistroService {
     private final CorreoService correoService;
     private final UsuarioService usuarioService;
     private final MessageSource messageSource;
+    private final ConstanteService constanteService;
+    private final String servidor;
 
-    public RegistroService(CorreoService correoService, UsuarioService usuarioService, MessageSource messageSource) {
+    public RegistroService(CorreoService correoService, UsuarioService usuarioService,
+            MessageSource messageSource, ConstanteService constanteService) {
         this.correoService = correoService;
         this.usuarioService = usuarioService;
         this.messageSource = messageSource;
+        this.constanteService = constanteService;
+        //Ahora el servidor se lee de la tabla constante y ya no del application.properties
+        Optional<Constante> constante = constanteService.findByAtributo("servidor.http");
+        servidor = constante.isPresent() ? constante.get().getValor() : "http://localhost";
     }
 
     //Este método se usa en el enlace del correo enviado...
@@ -88,9 +95,8 @@ public class RegistroService {
         return clave;
     }
 
-    //Ojo cómo le lee una informacion del application.properties
-    @Value("${servidor.http}")
-    private String servidor;
+    //Antes el servidor se leía del application.properties con @Value("${servidor.http}"),
+    //ahora se toma de la tabla constante en el constructor de esta clase.
 
     private void enviaCorreoActivar(Usuario usuario, String clave) throws MessagingException {
         String mensaje = messageSource.getMessage("registro.correo.activar", null, Locale.getDefault());
